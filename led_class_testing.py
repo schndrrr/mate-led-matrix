@@ -16,6 +16,8 @@ class Kasten:
     debug = False
     
     def __init__(self, pixelNumber, debugMode):
+        ''' pixelNumber ... number of LEDs in the display array
+        debugMode ... True for use without LEDs connected '''
         self.numberOfPixels = pixelNumber
         self.pixels = [(0,0,0)] * pixelNumber
         self.debug = debugMode
@@ -27,9 +29,13 @@ class Kasten:
             self.neopixel_pixels = neopixel.NeoPixel(board.D18, self.numberOfPixels)
         
     def sync(self):
+        ''' Synchronize the screen '''
         self.neopixel_pixels = self.pixels
         
     def setPixel(self, x, y, col):
+        ''' Set a pixel on the matrix
+        x,y ... position
+        col ... 3-touple for (r,g,b) '''
         print(x)
         self.mapping = [[ 1.,  8.,  9., 16., 17., 24., 25., 32., 33., 40.],
                         [ 2.,  7., 10., 15., 18., 23., 26., 31., 34., 39.],
@@ -53,6 +59,7 @@ def __main__():
     n = 3
     count = 0
     colorCount = 0
+    
     while True:
         for x in range(4):
             for y in range(10):
